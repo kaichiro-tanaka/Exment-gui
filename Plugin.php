@@ -1,5 +1,7 @@
 <?php
-namespace App\Plugins\managementView;
+
+// (1)
+namespace App\Plugins\ManagementView;
 
 use Exceedone\Exment\Services\Plugin\PluginViewBase;
 use Exceedone\Exment\Enums\ColumnType;
