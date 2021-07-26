@@ -1,7 +1,7 @@
 <?php
 
 // (1)
-namespace App\Plugins\YouTubeSearch;
+namespace App\Plugins\ManagementView;
 
 use Encore\Admin\Widgets\Box;
 use Exceedone\Exment\Model\CustomTable;
