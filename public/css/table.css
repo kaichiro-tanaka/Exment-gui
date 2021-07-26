@@ -1,0 +1,32 @@
+table.left{
+    width:100%;
+}
+
+table.left th, table td {
+    border: solid 1px black;
+    text-align: center;
+}
+
+table.left th:nth-child(1) {
+	width: 70px;
+}
+table.left th:nth-child(2) {
+	width: 110px;
+}
+table.left th:nth-child(3) {
+	width: 70px;
+}
+table.left th:nth-child(4) {
+	width: 200px;
+}
+table.left th:nth-child(n+5) {
+	width: 100px;
+}
+
+table.left tr:nth-child(5){
+    background-color:rgb(245, 188, 0);
+}
+
+table.left thead tr:nth-child(1){
+    background-color:rgb(58, 176, 255);
+}
