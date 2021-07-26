@@ -23,53 +23,7 @@ class Plugin extends PluginPageBase
         return $this->getIndexBox();
     }
 
-    /**
-     * (2) youTube結果一覧表示
-     *
-     * @return void
-     */
-    public function list()
-    {
-        $html = $this->getIndexBox()->render();
-
-        // 文字列検索
-        $client = new Client([
-            'base_uri' => 'https://www.googleapis.com/youtube/v3/',
-        ]);
-
-        $method = 'GET';
-        $uri = "search?part=id&type=video&maxResults=20&key=" . $this->plugin->getCustomOption('access_key') 
-            . "&q=" . urlencode(request()->get('youtube_search_query')); //検索
-        $options = [];
-        $response = $client->request($method, $uri, $options);
-
-        $list = json_decode($response->getBody()->getContents(), true);
-        $ids = collect(array_get($list, 'items', []))->map(function($l){
-            return array_get($l, 'id.videoId');
-        })->toArray();
-
-
-        // idより詳細を検索
-        $client = new Client([
-            'base_uri' => 'https://www.googleapis.com/youtube/v3/',
-        ]);
-
-        $method = 'GET';
-        $uri = "videos?part=id,snippet,statistics&key=" . $this->plugin->getCustomOption('access_key') 
-            . "&id=" . implode(',', $ids); //検索
-        $options = [];
-        $response = $client->request($method, $uri, $options);
-
-        $list = json_decode($response->getBody()->getContents(), true);
-
-        $html .= new Box("YouTube検索結果", view('exment_you_tube_search::list', [
-            'items' => array_get($list, 'items', []),
-            // (5)
-            'item_action' => $this->plugin->getRouteUri('save'),
-        ])->render());
-
-        return $html;
-    }
+    
 
     /**
      * (2) データ保存
@@ -99,14 +53,11 @@ class Plugin extends PluginPageBase
      * @return void
      */
     protected function getIndexBox(){
-        // (3) YouTube アクセスキーのチェック
-        $hasKey = !is_null($this->plugin->getCustomOption('access_key'));
+        
 
-        // (4)
-        return new Box("YouTube検索", view('exment_you_tube_search::index', [
-            'action' => $this->plugin->getRouteUri('list'),
-            'youtube_search_query' => request()->get('youtube_search_query'),
-            'hasKey' => $hasKey,
+        
+        return new Box("外注契約管理表", view('exment_management_view::index', [
+            
         ]));
     }
 
