@@ -1,7 +1,7 @@
 <?php
 
 // (1)
-namespace App\Plugins\ManagementView;
+namespace App\Plugins\ContractManagementView;
 
 use Encore\Admin\Widgets\Box;
 use Exceedone\Exment\Model\CustomTable;
