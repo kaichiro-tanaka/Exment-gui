@@ -43,7 +43,7 @@ class Plugin extends PluginPageBase
      */
     protected function getIndexBox(){
 
-        return view('exment_management_view::index', [
+        return view('exment_contract_management_view::index', [
             'contents' => $this->getContents(),
             'changePeriod' => $this->getRouteUri('changePeriod'),
             'newContract' => $this->getRouteUri('newContract'),

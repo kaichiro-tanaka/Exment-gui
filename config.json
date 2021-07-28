@@ -33,7 +33,7 @@
             "method": [
                 "post"
             ],
-            "function": "newContract"
+            "function": "chengeStatus"
         }
     ]
 }
