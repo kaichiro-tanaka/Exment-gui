@@ -1,5 +1,5 @@
 {
-    "plugin_name": "managementView",
+    "plugin_name": "contractManagementView",
     "plugin_view_name" : "外注契約管理表",
     "description": "外注契約管理表",
     "uuid":  "f5caf6a0-ef7a-11eb-85b4-0800200c9a66",
@@ -25,6 +25,13 @@
             "uri": "newContract",
             "method": [
                 "get"
+            ],
+            "function": "newContract"
+        },
+        {
+            "uri": "chengeStatus",
+            "method": [
+                "post"
             ],
             "function": "newContract"
         }
