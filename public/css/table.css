@@ -1,32 +1,99 @@
-table.left{
-    width:100%;
+.content-wrapper {
+    background-color: white;
 }
 
-table.left th, table td {
-    border: solid 1px black;
+.management-table {
+    margin-left: auto;
+    margin-right: auto;
+    border-collapse: collapse;
+    width: 900px;
+    border-collapse:separate;
+    border-spacing: 0;
+    font-size: 12px;
+}
+.management-table th:first-child{
+    border-radius: 6px 0 0 0;
+}
+.management-table th:last-child{
+    border-radius: 0 6px 0 0;
+    border-left: 0.6px solid #ffffff;
+}
+.management-table th {
     text-align: center;
+    color:white;
+    background: linear-gradient(#86ace2,#0065f4);
+    border-left: 0.3px solid #ffffff;
+    padding: 5px 0;
+}
+.management-table td:last-child{
+    border-right: 1px solid #c3c3c3;
+}
+.management-table tr:last-child td:first-child {
+    border-radius: 0 0 0 5px;
+  }
+.management-table td {
+    text-align: center;
+    border-left: 1px solid #c3c3c3;
+    border-bottom: 1px solid #c3c3c3;
+    border-top:none;
+    height:20px;
+    
+}
+.management-table tr:last-child td:last-child {
+    border-radius: 0 0 5px 0;
+}
+.row1{
+    min-width: 120px;
+}
+.row2 {
+    min-width: 60px;
+}
+.row3 {
+    min-width: 60px;
+}
+.row4 {
+    min-width: 80px;
+}
+.row5 {
+    min-width: 80px;
+}
+.row6 {
+    min-width: 140px;
+}
+.row-month {
+    min-width: 50px;
+}
+section.content{
+    padding: 5px;
+}
+section.content-header{
+    padding: 7px 15px 0 15px;
+}
+.work-surplus {
+    background-color: #2bff00;
+}
+.deadline-over{
+    background-color: #fc2600;
+}
+.complete{
+    background-color: gray;
+}
+select{
+    border: 1px solid white;
+}
+/* Exment生成部分を非表示 */
+.content-header{
+    display: none;
 }
 
-table.left th:nth-child(1) {
-	width: 70px;
-}
-table.left th:nth-child(2) {
-	width: 110px;
-}
-table.left th:nth-child(3) {
-	width: 70px;
-}
-table.left th:nth-child(4) {
-	width: 200px;
-}
-table.left th:nth-child(n+5) {
-	width: 100px;
+
+.main-box{
+    width: 1140px;
 }
 
-table.left tr:nth-child(5){
-    background-color:rgb(245, 188, 0);
+.pull-left h3{
+    margin: 5px 0 5px 5px;
 }
-
-table.left thead tr:nth-child(1){
-    background-color:rgb(58, 176, 255);
+.pull-right a{
+    margin: 5px 0 5px 5px;
 }

@@ -7,69 +7,65 @@ use Encore\Admin\Widgets\Box;
 use Exceedone\Exment\Model\CustomTable;
 use Exceedone\Exment\Services\Plugin\PluginPageBase;
 use GuzzleHttp\Client;
+use App\Models\ContractManagement;
+use Encore\Admin\Form;
+use Encore\Admin\Facades\Admin;
 
 class Plugin extends PluginPageBase
 {
-    // (3)
     protected $useCustomOption = true;
 
+
+
     /**
-     * (2) Index
-     *
+     * 初期表示
      * @return void
      */
     public function index()
     {
         return $this->getIndexBox();
     }
-
-    
-
     /**
-     * (2) データ保存
-     *
-     * @return void
+     * 契約期間変更時処理
      */
-    public function save(){
-        $request = request();
-        $model = CustomTable::getEloquent('youtube')->getValueModel();
-        $model->setValue('youtubeId', $request->get('youtubeId'));
-        $model->setValue('description', $request->get('description'));
-        $model->setValue('viewCount', $request->get('viewCount'));
-        $model->setValue('likeCount', $request->get('likeCount'));
-        $model->setValue('dislikeCount', $request->get('dislikeCount'));
-        $model->setValue('url', $request->get('url'));
-        $model->setValue('title', $request->get('title'));
-        $model->setValue('publishedAt', $request->get('publishedAt'));
-        $model->save();
-
-        admin_toastr(trans('admin.save_succeeded'));
-        return redirect()->back()->withInput();
+    private function changePeriod(){
+        return $this->getIndexBox();
+    }
+    private function newContract(){
+        $tableObj = CustomTable::getEloquent('contract_management');
+        $form = $tableObj->custom_forms()->first();
+        return $form;
     }
 
     /**
-     * 検索ボックス取得
-     *
+     * bladeを返す
      * @return void
      */
     protected function getIndexBox(){
-        
 
-        
-        return new Box("外注契約管理表", view('exment_management_view::index', [
-            
-        ]));
+        return view('exment_management_view::index', [
+            'contents' => $this->getContents(),
+            'changePeriod' => $this->getRouteUri('changePeriod'),
+            'newContract' => $this->getRouteUri('newContract'),
+        ]);
     }
 
     /**
-     * (3) プラグインの編集画面で設定するオプション。アクセスキーを入力させる
-     *
-     * @param [type] $form
-     * @return void
+     * bladeに渡す配列を取得
      */
-    public function setCustomOptionForm(&$form)
-    {
-        $form->text('access_key', 'アクセスキー')
-            ->help('YouTubeのアクセスキーを入力してください。');
+    private function getContents(){
+        $contents = array(['contract_id'=>'1','company'=>'スタイルフリー','name'=>'服部','money'=>'○○','contract_kind'=>'派遣','contract_priod'=>'単月','tasks'=>array('個別契約書作成'=>array('none','none','none','none','none','none','none','none','none','none','none','none'),'個別契約書押印'=>array('none','none','none','none','none','none','none','none','none','none','none','none'),'個別契約書送付'=>array('none','none','none','none','none','none','none','none','none','none','none','none'))],
+                          ['contract_id'=>'2','company'=>'ヨコタ','name'=>'村瀬','money'=>'○○','contract_kind'=>'派遣','contract_priod'=>'単月','tasks'=>array('個別契約書作成'=>array('work','none','none','none','none','none','none','none','none','none','none','none'),'個別契約書押印'=>array('nonel','none','none','none','none','none','none','none','none','none','none','none'),'個別契約書送付'=>array('none','none','none','none','none','none','none','none','none','none','none','none'))],
+                          ['contract_id'=>'3','company'=>'ITP','name'=>'西尾','money'=>'○○','contract_kind'=>'派遣','contract_priod'=>'単月','tasks'=>array('個別契約書作成'=>array('work-surplus','none','none','none','none','none','none','none','none','none','none','none'),'個別契約書押印'=>array('none','none','none','none','none','none','none','none','none','none','none','none'),'個別契約書送付'=>array('none','none','none','none','none','none','none','none','none','none','none','none'))],
+                          ['contract_id'=>'4','company'=>'ピーネックス','name'=>'田中','money'=>'○○','contract_kind'=>'派遣','contract_priod'=>'単月','tasks'=>array('個別契約書作成'=>array('deadline-over','none','none','none','none','none','none','none','none','none','none','none'),'個別契約書押印'=>array('none','none','none','none','none','none','none','none','none','none','none','none'),'個別契約書送付'=>array('none','none','none','none','none','none','none','none','none','none','none','none'))],
+                          ['contract_id'=>'5','company'=>'ウイングノア','name'=>'岡本','money'=>'○○','contract_kind'=>'派遣','contract_priod'=>'単月','tasks'=>array('個別契約書作成'=>array('pre-complete','none','none','none','none','none','none','none','none','none','none','none'),'個別契約書押印'=>array('none','none','none','none','none','none','none','none','none','none','none','none'),'個別契約書送付'=>array('none','none','none','none','none','none','none','none','none','none','none','none'))],
+                          ['contract_id'=>'6','company'=>'アテナ','name'=>'金田','money'=>'○○','contract_kind'=>'派遣','contract_priod'=>'単月','tasks'=>array('個別契約書作成'=>array('complete','none','none','none','none','none','none','none','none','none','none','none'),'個別契約書押印'=>array('none','none','none','none','none','none','none','none','none','none','none','none'),'個別契約書送付'=>array('none','none','none','none','none','none','none','none','none','none','none','none'))],
+                          ['contract_id'=>'7','company'=>'パレットリンク','name'=>'佐藤','money'=>'○○','contract_kind'=>'準委任','contract_priod'=>'単月','tasks'=>array('見積受け取り'=>array('none','none','none','none','none','none','none','none','none','none','none','none'),'注文書発注'=>array('none','none','none','none','none','none','none','none','none','none','none','none'),'注文書押印'=>array('none','none','none','none','none','none','none','none','none','none','none','none'),'注文書送付'=>array('none','none','none','none','none','none','none','none','none','none','none','none'))],
+                          ['contract_id'=>'8','company'=>'ヨコタ','name'=>'小林','money'=>'○○','contract_kind'=>'準委任','contract_priod'=>'単月','tasks'=>array('見積受け取り'=>array('none','none','none','none','none','none','none','none','none','none','none','none'),'注文書発注'=>array('none','none','none','none','none','none','none','none','none','none','none','none'),'注文書押印'=>array('none','none','none','none','none','none','none','none','none','none','none','none'),'注文書送付'=>array('none','none','none','none','none','none','none','none','none','none','none','none'))],
+                          ['contract_id'=>'9','company'=>'SJC','name'=>'水野','money'=>'○○','contract_kind'=>'準委任','contract_priod'=>'単月','tasks'=>array('見積受け取り'=>array('none','none','none','none','none','none','none','none','none','none','none','none'),'注文書発注'=>array('none','none','none','none','none','none','none','none','none','none','none','none'),'注文書押印'=>array('none','none','none','none','none','none','none','none','none','none','none','none'),'注文書送付'=>array('none','none','none','none','none','none','none','none','none','none','none','none'))],
+                          ['contract_id'=>'10','company'=>'パレットリンク','name'=>'中桐','money'=>'○○','contract_kind'=>'準委任','contract_priod'=>'単月','tasks'=>array('見積受け取り'=>array('none','none','none','none','none','none','none','none','none','none','none','none'),'注文書発注'=>array('none','none','none','none','none','none','none','none','none','none','none','none'),'注文書押印'=>array('none','none','none','none','none','none','none','none','none','none','none','none'),'注文書送付'=>array('none','none','none','none','none','none','none','none','none','none','none','none'))],
+                          ['contract_id'=>'11','company'=>'SJC','name'=>'清水','money'=>'○○','contract_kind'=>'準委任','contract_priod'=>'単月','tasks'=>array('見積受け取り'=>array('none','none','none','none','none','none','none','none','none','none','none','none'),'注文書発注'=>array('none','none','none','none','none','none','none','none','none','none','none','none'),'注文書押印'=>array('none','none','none','none','none','none','none','none','none','none','none','none'),'注文書送付'=>array('none','none','none','none','none','none','none','none','none','none','none','none'))]);
+
+        return $contents;
     }
 }

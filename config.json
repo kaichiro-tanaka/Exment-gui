@@ -15,18 +15,18 @@
             "function": "index"
         },
         {
-            "uri": "list",
-            "method": [
-                "get"
-            ],
-            "function": "list"
-        },
-        {
-            "uri": "save",
+            "uri": "changePeriod",
             "method": [
                 "post"
             ],
-            "function": "save"
+            "function": "changePeriod"
+        },
+        {
+            "uri": "newContract",
+            "method": [
+                "get"
+            ],
+            "function": "newContract"
         }
     ]
 }
