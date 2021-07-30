@@ -29,6 +29,13 @@
             "function": "newContract"
         },
         {
+            "uri": "saveNewContract",
+            "method": [
+                "post"
+            ],
+            "function": "saveNewContract"
+        },
+        {
             "uri": "chengeStatus",
             "method": [
                 "post"

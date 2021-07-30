@@ -1,5 +1,15 @@
 .content-wrapper {
     background-color: white;
+    white-space:nowrap;
+    overflow:scroll;
+}
+.none-contents{
+    text-align: center;
+    width: 500px;
+    margin: 0 auto;
+}
+.none-content{
+    margin-top: 40px;
 }
 
 .management-table {
@@ -76,10 +86,13 @@ section.content-header{
     background-color: #fc2600;
 }
 .complete{
-    background-color: gray;
+    background-color: rgb(124, 124, 124);
 }
-select{
+.period{
     border: 1px solid white;
+}
+.passed{
+    background-color: rgb(124, 124, 124);
 }
 /* Exment生成部分を非表示 */
 .content-header{
@@ -88,7 +101,10 @@ select{
 
 
 .main-box{
-    width: 1140px;
+    
+    width: 1170px;
+    margin: 0 auto;
+    margin-bottom: 30px;
 }
 
 .pull-left h3{
@@ -96,4 +112,18 @@ select{
 }
 .pull-right a{
     margin: 5px 0 5px 5px;
+}
+
+
+.complete-button::after {
+    content: '';
+    display: block;
+    position: absolute;
+    top: .5em;
+    left: -1.5em;
+    width: 10px;
+    height: 5px;
+    border-left: 2px solid #25AF01;
+    border-bottom: 2px solid #25AF01;
+    transform: rotate(-45deg);
 }
