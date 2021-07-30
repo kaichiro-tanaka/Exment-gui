@@ -27,9 +27,9 @@ class Plugin extends PluginPageBase
     public function index(){
         $taskTable = CustomTable::getEloquent('task')->getValueModel();
         $deadlineModel = CustomColumn::getEloquent('deadline', $taskTable);
-        $statusModel = CustomColumn::getEloquent('deadline', $taskTable);
+        $statusModel = CustomColumn::getEloquent('status', $taskTable);
         $isObject = $taskTable->query()
-                              ->where($deadlineModel->getIndexColumnName(), '<', date('y-m-d'))
+                              ->whereDate($deadlineModel->getIndexColumnName(), '<', date('y-m-d'))
                               ->where($statusModel->getIndexColumnName(), 'work')
                               ->count();
 
