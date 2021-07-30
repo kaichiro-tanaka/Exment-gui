@@ -27,8 +27,10 @@ class Plugin extends PluginPageBase
     public function index(){
         $taskTable = CustomTable::getEloquent('task')->getValueModel();
         $deadlineModel = CustomColumn::getEloquent('deadline', $taskTable);
+        $statusModel = CustomColumn::getEloquent('deadline', $taskTable);
         $isObject = $taskTable->query()
-                              ->whereDate($deadlineModel->getIndexColumnName(), '<', date('y-m-d'))
+                              ->where($deadlineModel->getIndexColumnName(), '<', date('y-m-d'))
+                              ->where($statusModel->getIndexColumnName(), 'work')
                               ->count();
 
         if ($isObject > 0) {
@@ -149,6 +151,11 @@ class Plugin extends PluginPageBase
             $id = $taskdata->id;
             $value = CustomTable::getEloquent('task')->getValueModel($id);
             $value->setValue('status', $status);
+            if($status == 'work'){
+                $value->setValue('complete_date', null);
+            } else{
+                $value->setValue('complete_date', date('y-m-d'));
+            }
             $value->save();
         }          
             
@@ -162,13 +169,15 @@ class Plugin extends PluginPageBase
                                    ->where($yearColumnModel->getIndexColumnName(), $year)
                                    ->where($statusColumnModel->getIndexColumnName(), 'pre-complete')
                                    ->count();
-        if($countTask != 0 && $countTask == $countComplete){
+        if($countTask != 0 && $countTask == $countComplete && $month != 6){
             $CompleteTasks = $taskModel->where($contractIdColumnModel->getIndexColumnName(), $contractId)
                                    ->where($monthColumnModel->getIndexColumnName(), $month)
                                    ->where($yearColumnModel->getIndexColumnName(), $year)
                                    ->where($statusColumnModel->getIndexColumnName(), 'pre-complete')
                                    ->get();
-            $month = (int)$month + 1;
+            $model = CustomTable::getEloquent('contract_management')->getValueModel($contractId);
+            $nextMonth = $model->getValue('contract_period');
+            $month = (int)$month + $nextMonth;
             $deadline = $this->getDeadline($month);
             $status = 'work';
             foreach($CompleteTasks as $CompleteTask) {
@@ -199,7 +208,7 @@ class Plugin extends PluginPageBase
                 $task->setValue('year', $request->get('year'));
                 $task->save();
             }
-            $model = CustomTable::getEloquent('contract_management')->getValueModel($contractId);
+            
             $model->setValue('contract_period', 1)
                   ->save();
         }

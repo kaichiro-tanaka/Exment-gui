@@ -113,17 +113,3 @@ section.content-header{
 .pull-right a{
     margin: 5px 0 5px 5px;
 }
-
-
-.complete-button::after {
-    content: '';
-    display: block;
-    position: absolute;
-    top: .5em;
-    left: -1.5em;
-    width: 10px;
-    height: 5px;
-    border-left: 2px solid #25AF01;
-    border-bottom: 2px solid #25AF01;
-    transform: rotate(-45deg);
-}

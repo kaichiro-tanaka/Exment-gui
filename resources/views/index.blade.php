@@ -62,17 +62,20 @@
           @endif
           <td>{{ $key }}</td>
           @for ($i =  0; $i < 12 ; $i++)      
-            @if ($value[$i] === 'work' || $value[$i] === 'work-surplus' || $value[$i] === 'deadline-over')
+            @if ($value[$i] === 'work')
             <td class="{{ $value[$i] }}">
               <form action="{{ admin_url($chengeStatus) }}" name="form1" method="POST">     
                 <input type="hidden" name="order" value="{{ $count }}">
                 <input type="hidden" name="contract_id" value="{{ $content['contract_id'] }}">
                 <input type="hidden" name="month" value="{{ $i }}">
                 <input type="hidden" name="year" value="{{ $content['year'] }}">
+                <input type="hidden" name="status" value="pre-complete">
                 {{ csrf_field() }}
                 <!-- <input type="checkbox" name="status" value="pre-complete" id="box" onclick="onClickHandler()">
                 <input type="submit"> -->
-                <button type="submit" name="status" value="pre-complete" class="complete-butron">完了</button>
+                <button type="submit" class="button1" style="padding: 0px 1px 0px 2px; height:22px; width: 21px; border: none; background-color: white;">
+                  <i class="fa fa-square-o" style="font-size:1.2em; color:#1da1f2;"></i>
+                </button>
               </form>
             </td>
             @elseif ($value[$i] === 'pre-complete')
@@ -82,10 +85,29 @@
                 <input type="hidden" name="contract_id" value="{{ $content['contract_id'] }}">
                 <input type="hidden" name="month" value="{{ $i }}">
                 <input type="hidden" name="year" value="{{ $content['year'] }}">
+                <input type="hidden" name="status" value="work">
                 {{ csrf_field() }}
                 <!-- <input type="checkbox" name="status" value="work" checked id="box" onclick="onClickHandler()">
                 <input type="submit"> -->
-                <button type="submit" name="status" value="work">訂正</button>
+                <button type="submit" class="button1" style="padding: 0px 1px 0px 2px; height:22px; width: 21px; border: none; background-color: white;">
+                  <i class="fa fa-check-square" style="font-size:1.2em; color:#1da1f2;"></i>
+                </button>
+              </form>  
+            </td>
+            @elseif ($value[$i] === 'deadline-over')
+            <td class="{{ $value[$i] }}">
+              <form action="{{ admin_url($chengeStatus) }}" name="form1" method="POST">
+                <input type="hidden" name="order" value="{{ $count }}">
+                <input type="hidden" name="contract_id" value="{{ $content['contract_id'] }}">
+                <input type="hidden" name="month" value="{{ $i }}">
+                <input type="hidden" name="year" value="{{ $content['year'] }}">
+                <input type="hidden" name="status" value="pre-complete">
+                {{ csrf_field() }}
+                <!-- <input type="checkbox" name="status" value="work" checked id="box" onclick="onClickHandler()">
+                <input type="submit"> -->
+                <button type="submit" class="button1" style="padding: 0px 1px 0px 2px; height:22px; width: 21px; border: none; background-color: #fc2600;">
+                  <i class="fa fa-square" style="font-size:1.2em; color:white;"></i>
+                </button>
               </form>  
             </td>
             @elseif ($value[$i] === 'complete')
