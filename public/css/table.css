@@ -70,6 +70,8 @@
 .row6 {
     min-width: 140px;
 }
+
+
 .row-month {
     min-width: 50px;
 }
@@ -112,4 +114,8 @@ section.content-header{
 }
 .pull-right a{
     margin: 5px 0 5px 5px;
+}
+
+.delete-btn{
+    min-width: 44px;
 }

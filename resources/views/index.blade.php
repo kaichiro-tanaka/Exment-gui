@@ -32,6 +32,7 @@
         <th class="row3">原価</th>
         <th class="row4">契約期間</th>
         <th class="row5">契約形態</th>
+        <th class="row-month">削除</th>
         <th class="row6">タスク</th>
         <th class="row-month">7月</th>                  
         <th class="row-month">8月</th>                  
@@ -59,6 +60,7 @@
           <td rowspan="{{ $cnt }}">{{ $content['money'] }}</td>                          
           <td rowspan="{{ $cnt }}">{{ $content['contract_priod'] }}</td>
           <td rowspan="{{ $cnt }}">{{ $content['contract_kind'] }}</td> 
+          <td rowspan="{{ $cnt }}" class="row7"><button type="button" class="delete-btn">削除</button></td> 
           @endif
           <td>{{ $key }}</td>
           @for ($i =  0; $i < 12 ; $i++)      
