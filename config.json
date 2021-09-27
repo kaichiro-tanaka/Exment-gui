@@ -6,6 +6,7 @@
     "author":  "cis",
     "version": "1.0.0",
     "plugin_type": "page",
+    "templates": true,
     "route": [
         {
             "uri": "",
