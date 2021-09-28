@@ -8,13 +8,20 @@
         <h1 class="form-title">新規登録</h1>
         <form action="{{admin_url($saveNewContract)}}" class="contract-form" method="post">
             <div class="form-group">
+                <label>管理Gr</label>
+                <select name="group" id="" class="form-control">
+                    <option value="1G">1G</option>
+                    <option value="2G">2G</option>
+                    <option value="3G">3G</option>
+                </select>
+            </div>
+            <div class="form-group">
                 <label>氏名</label>
                 <input type="text" class="form-control" name="name">
             </div>
             <div class="form-group">
                 <label>契約分類</label>
                 <select name="contract_classification" id="" class="form-control">
-                    <option value="1">個人</option>
                     <option value="2">派遣</option>
                     <option value="3">準委任</option>
                 </select>
@@ -36,7 +43,7 @@
                 <input type="text" class="form-control" name="year">
             </div>
             <div class="form-group">
-                <label>原価</label>
+                <label>契約金額</label>
                 <input type="text" class="form-control" name="cost">
             </div>
             <div class="form-group">

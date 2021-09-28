@@ -14,6 +14,8 @@ use Encore\Admin\Facades\Admin;
 use Illuminate\Support\Facades\Log;
 use DateTime;
 
+use function Psy\debug;
+
 class Plugin extends PluginPageBase
 {
     protected $useCustomOption = true;
@@ -35,6 +37,7 @@ class Plugin extends PluginPageBase
 
         if ($isObject > 0) {
             $targetTasks = $taskTable->whereDate($deadlineModel->getIndexColumnName(), '<', date('y-m-d'))
+                                     ->where($statusModel->getIndexColumnName(), 'work')
                                      ->get();
             foreach($targetTasks as $targetTask){
                 $id = $targetTask->id;
@@ -75,6 +78,7 @@ class Plugin extends PluginPageBase
         $contractTypeModel = CustomColumn::getEloquent('contract_type', $taskMst);
         $orderModel = CustomColumn::getEloquent('order', $taskMst);
         //新規契約登録
+        $model->setValue('group', $request->get('group'));
         $model->setValue('name', $request->get('name'));
         $model->setValue('contract_classification', $request->get('contract_classification'));
         $model->setValue('contract_period', $request->get('contract_period'));
@@ -116,7 +120,7 @@ class Plugin extends PluginPageBase
         //push通知
         admin_toastr(trans('admin.save_succeeded'));
         //ページ表示
-        return $this->getIndexBox();
+        return $this->index();
 
         
     }
@@ -126,97 +130,105 @@ class Plugin extends PluginPageBase
     public function chengeStatus(){
         //リクエスト取得
         $request = request();
-        $status = $request->get('status');
-        $month = $this->getMonth((int)$request->get('month'));
-        $order = $request->get('order');
-        $contractId = $request->get('contract_id');
-        $year = $request->get('year');
+        log::debug($request);
+        $count = $request->get('count');
+        for($i=0; $i<$count; $i++){
+            $status = $request->get('status'.$i);
+            $month = $this->getMonth((int)$request->get('month'.$i));
+            $order = $request->get('order'.$i);
+            $contractId = $request->get('contract_id'.$i);
+            $year = $request->get('year'.$i);
 
-        $taskModel = CustomTable::getEloquent('task')->getValueModel();
-        $taskMst = CustomTable::getEloquent('task_mst')->getValueModel();
-        $orderColumnModel = CustomColumn::getEloquent('order', $taskModel);
-        $contractIdColumnModel = CustomColumn::getEloquent('contract_id', $taskModel);
-        $yearColumnModel = CustomColumn::getEloquent('year', $taskModel);
-        $statusColumnModel = CustomColumn::getEloquent('status', $taskModel);
-        $monthColumnModel = CustomColumn::getEloquent('month', $taskModel);
-        $taskNameColumnModel = CustomColumn::getEloquent('task_name', $taskMst);
+            $taskModel = CustomTable::getEloquent('task')->getValueModel();
+            $taskMst = CustomTable::getEloquent('task_mst')->getValueModel();
+            $orderColumnModel = CustomColumn::getEloquent('order', $taskModel);
+            $contractIdColumnModel = CustomColumn::getEloquent('contract_id', $taskModel);
+            $yearColumnModel = CustomColumn::getEloquent('year', $taskModel);
+            $statusColumnModel = CustomColumn::getEloquent('status', $taskModel);
+            $monthColumnModel = CustomColumn::getEloquent('month', $taskModel);
+            $taskNameColumnModel = CustomColumn::getEloquent('task_name', $taskMst);
 
-        $taskdatas = $taskModel->where($contractIdColumnModel->getIndexColumnName(), $contractId)
-                               ->where($orderColumnModel->getIndexColumnName(), $order)
-                               ->where($yearColumnModel->getIndexColumnName(), $year)
-                               ->where($monthColumnModel->getIndexColumnName(), $month)
-                               ->get();
-
-        foreach($taskdatas as $taskdata){
-            $id = $taskdata->id;
-            $value = CustomTable::getEloquent('task')->getValueModel($id);
-            $value->setValue('status', $status);
-            if($status == 'work'){
-                $value->setValue('complete_date', null);
-            } else{
-                $value->setValue('complete_date', date('y-m-d'));
-            }
-            $value->save();
-        }          
-            
-        $countTask = $taskModel->where($contractIdColumnModel->getIndexColumnName(), $contractId)
-                               ->where($monthColumnModel->getIndexColumnName(), $month)
-                               ->where($yearColumnModel->getIndexColumnName(), $year)
-                               ->count();
-        
-        $countComplete = $taskModel->where($contractIdColumnModel->getIndexColumnName(), $contractId)
-                                   ->where($monthColumnModel->getIndexColumnName(), $month)
-                                   ->where($yearColumnModel->getIndexColumnName(), $year)
-                                   ->where($statusColumnModel->getIndexColumnName(), 'pre-complete')
-                                   ->count();
-        if($countTask != 0 && $countTask == $countComplete && $month != 6){
-            $CompleteTasks = $taskModel->where($contractIdColumnModel->getIndexColumnName(), $contractId)
-                                   ->where($monthColumnModel->getIndexColumnName(), $month)
-                                   ->where($yearColumnModel->getIndexColumnName(), $year)
-                                   ->where($statusColumnModel->getIndexColumnName(), 'pre-complete')
-                                   ->get();
-            $model = CustomTable::getEloquent('contract_management')->getValueModel($contractId);
-            $nextMonth = $model->getValue('contract_period');
-            $month = (int)$month + $nextMonth;
-            $deadline = $this->getDeadline($month);
-            $status = 'work';
-            foreach($CompleteTasks as $CompleteTask) {
-                $id = $CompleteTask->id;
-                $value = CustomTable::getEloquent('task')->getValueModel($id);
-                $value->setValue('status', 'complete');
-                $value->save();
-
-                $task = CustomTable::getEloquent('task')->getValueModel();
-                $taskMst = CustomTable::getEloquent('task_mst')->getValueModel();
-                $taskName = $CompleteTask->getValue('task_name');
-                $taskMstdatas = $taskMst->where($taskNameColumnModel->getIndexColumnName(), $taskName)
+            $taskdatas = $taskModel->where($contractIdColumnModel->getIndexColumnName(), $contractId)
+                                ->where($orderColumnModel->getIndexColumnName(), $order)
+                                ->where($yearColumnModel->getIndexColumnName(), $year)
+                                ->where($monthColumnModel->getIndexColumnName(), $month)
                                 ->get();
-                foreach($taskMstdatas as $taskMstdata){
-                    $remindTiming = $taskMstdata->getValue('remind_timing');
-                    $order = $taskMstdata->getValue('order');
+
+            foreach($taskdatas as $taskdata){
+                $id = $taskdata->id;
+                $value = CustomTable::getEloquent('task')->getValueModel($id);
+                $value->setValue('status', $status);
+                if($status == 'work'){
+                    $value->setValue('complete_date', null);
+                } else{
+                    $value->setValue('complete_date', date('y-m-d'));
                 }
-                $remindTiming = $taskMstdata->getValue('remind_timing');
-                $remindDate = $this->getRemindDate($remindTiming, $deadline);
-    
-                $task->setValue('contract_id', $contractId);
-                $task->setValue('month', $month);
-                $task->setValue('deadline', $deadline);
-                $task->setValue('remind_date', $remindDate);
-                $task->setValue('task_name', $taskName);
-                $task->setValue('status', $status);
-                $task->setValue('order', $order);
-                $task->setValue('year', $request->get('year'));
-                $task->save();
-            }
+                $value->save();
+            }          
+                
+            $countTask = $taskModel->where($contractIdColumnModel->getIndexColumnName(), $contractId)
+                                ->where($monthColumnModel->getIndexColumnName(), $month)
+                                ->where($yearColumnModel->getIndexColumnName(), $year)
+                                ->count();
             
-            $model->setValue('contract_period', 1)
-                  ->save();
+            $countComplete = $taskModel->where($contractIdColumnModel->getIndexColumnName(), $contractId)
+                                    ->where($monthColumnModel->getIndexColumnName(), $month)
+                                    ->where($yearColumnModel->getIndexColumnName(), $year)
+                                    ->where($statusColumnModel->getIndexColumnName(), 'pre-complete')
+                                    ->count();
+            
+            if($countTask != 0 && $countTask == $countComplete){
+                $CompleteTasks = $taskModel->where($contractIdColumnModel->getIndexColumnName(), $contractId)
+                                ->where($monthColumnModel->getIndexColumnName(), $month)
+                                ->where($yearColumnModel->getIndexColumnName(), $year)
+                                ->where($statusColumnModel->getIndexColumnName(), 'pre-complete')
+                                ->get();
+                $model = CustomTable::getEloquent('contract_management')->getValueModel($contractId);
+                $nextMonth = $model->getValue('contract_period');
+                $month = (int)$month + $nextMonth;
+                $deadline = $this->getDeadline($month);
+                $status = 'work';
+                if($month > 12){
+                    $month = $month - 11;
+                }
+                foreach($CompleteTasks as $CompleteTask) {
+                    $id = $CompleteTask->id;
+                    $value = CustomTable::getEloquent('task')->getValueModel($id);
+                    $value->setValue('status', 'complete');
+                    $value->save();
+                    log::debug($month);
+                    if($month != 7){
+                        $task = CustomTable::getEloquent('task')->getValueModel();
+                        $taskMst = CustomTable::getEloquent('task_mst')->getValueModel();
+                        $taskName = $CompleteTask->getValue('task_name');
+                        $taskMstdatas = $taskMst->where($taskNameColumnModel->getIndexColumnName(), $taskName)
+                                        ->get();
+                        foreach($taskMstdatas as $taskMstdata){
+                            $remindTiming = $taskMstdata->getValue('remind_timing');
+                            $order = $taskMstdata->getValue('order');
+                        }
+                        $remindTiming = $taskMstdata->getValue('remind_timing');
+                        $remindDate = $this->getRemindDate($remindTiming, $deadline);
+            
+                        $task->setValue('contract_id', $contractId);
+                        $task->setValue('month', $month);
+                        $task->setValue('deadline', $deadline);
+                        $task->setValue('remind_date', $remindDate);
+                        $task->setValue('task_name', $taskName);
+                        $task->setValue('status', $status);
+                        $task->setValue('order', $order);
+                        $task->setValue('year', $request->get('year'.$i));
+                        $task->save();
+                    }
+                }
+                $model->setValue('contract_period', 1)
+                    ->save();
+            }
         }
-        
         //push通知
         admin_toastr(trans('admin.save_succeeded'));
         //ページ表示
-        return redirect()->back()->withInput();
+        return $this->index();
     }
     /**
      * タスク期日取得（月末営業日）
@@ -308,6 +320,8 @@ class Plugin extends PluginPageBase
         $model = CustomTable::getEloquent('contract_management')->getValueModel();
         $yearColumn = CustomColumn::getEloquent('year', $model);
         $companyColumn = CustomColumn::getEloquent('company', $model);
+        $groupColumn = CustomColumn::getEloquent('group', $model);
+        $classColumn = CustomColumn::getEloquent('company', $model);
         $year = $this->getYear();
         $isData = $model->where($yearColumn->getIndexColumnName(), $year)
                         ->orderby($companyColumn->getIndexColumnName(), 'asc')
@@ -317,11 +331,14 @@ class Plugin extends PluginPageBase
         }
         $contractDatas = $model->where($yearColumn->getIndexColumnName(), $year)
                                ->orderby($companyColumn->getIndexColumnName(), 'asc')
+                               ->orderby($classColumn->getIndexColumnName(), 'asc')
+                               ->orderby($groupColumn->getIndexColumnName(), 'asc')
                                ->get();
         
 
 
         foreach($contractDatas as $contractManageMentData){
+            $group = $contractManageMentData->getValue('group');
             $contractId = $contractManageMentData->getValue('contract_id');
             $company = $contractManageMentData->getValue('company');
             $name = $contractManageMentData->getValue('name');
@@ -365,7 +382,7 @@ class Plugin extends PluginPageBase
                 }
             }
             
-            $contents[] = array('contract_id'=>$contractId,'year'=>$year,'company'=>$company,'name'=>$name,'money'=>$money,'contract_kind'=>$contractKind,'contract_priod'=>$contractPriod,'tasks'=>$modifyTasks);
+            $contents[] = array('contract_id'=>$contractId,'year'=>$year,'company'=>$company,'name'=>$name,'money'=>$money,'contract_kind'=>$contractKind,'contract_priod'=>$contractPriod,'tasks'=>$modifyTasks,'group'=>$group);
             unset($modifyTasks);
             unset($tasks);
 
