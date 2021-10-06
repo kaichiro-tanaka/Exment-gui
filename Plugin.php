@@ -99,6 +99,9 @@ class Plugin extends PluginPageBase
         $deadline = $this->getDeadline($month);
         $status = 'work';
 
+
+        log::debug($taskMstdatas);
+
         foreach($taskMstdatas as $taskMstdata){
             $task = CustomTable::getEloquent('task')->getValueModel();
             $remindTiming = $taskMstdata->getValue('remind_timing');
@@ -186,11 +189,12 @@ class Plugin extends PluginPageBase
                 $model = CustomTable::getEloquent('contract_management')->getValueModel($contractId);
                 $nextMonth = $model->getValue('contract_period');
                 $month = (int)$month + $nextMonth;
+                if($month > 12){
+                    $month = $month - 12;
+                }
                 $deadline = $this->getDeadline($month);
                 $status = 'work';
-                if($month > 12){
-                    $month = $month - 11;
-                }
+                
                 foreach($CompleteTasks as $CompleteTask) {
                     $id = $CompleteTask->id;
                     $value = CustomTable::getEloquent('task')->getValueModel($id);
@@ -244,7 +248,10 @@ class Plugin extends PluginPageBase
         }
         //$holidays = getHolidays($year); 未実装
         $deadline = date('Y-m-d', strtotime('last day of ' . $year . '-' . $deadlineMonth));
+        log::debug("deadline".$deadlineMonth);
         $deadline = $this->judgeday($deadline);
+        log::debug("deadline".$deadline);
+        log::debug("year".$year);
         return $deadline;
     }
     /**
