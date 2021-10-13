@@ -1,6 +1,6 @@
 {
-    "template_view_name": "契約管理",
-    "description": "外注契約、タスク、タスクマスタ",
+    "template_view_name": "外注管理",
+    "description": null,
     "custom_tables": [
         {
             "table_name": "contract_management",
@@ -47,69 +47,5 @@
             "view_view_name": "全件ビュー"
         }
     ],
-    "custom_copies": [],
-    "admin_menu": [
-        {
-            "title": "外注契約管理表",
-            "menu_type": "parent_node",
-            "menu_name": "contract-manage"
-        },
-        {
-            "title": "外注契約管理表",
-            "menu_type": "table",
-            "menu_name": "contract_management"
-        },
-        {
-            "title": "タスク",
-            "menu_type": "table",
-            "menu_name": "task"
-        },
-        {
-            "title": "タスクマスタ",
-            "menu_type": "table",
-            "menu_name": "task_mst"
-        }
-    ],
-    "dashboards": [
-        {
-            "dashboard_name": "system_default_dashboard",
-            "dashboard_view_name": "既定のダッシュボード"
-        },
-        {
-            "dashboard_name": "9e87b42c9a9528a78721",
-            "dashboard_view_name": "メイン"
-        }
-    ],
-    "roles": [
-        {
-            "role_group_name": "data_admin_group",
-            "role_group_view_name": "全データ管理者グループ",
-            "description": "すべてのテーブルのデータを編集・閲覧可能な役割グループです。"
-        },
-        {
-            "role_group_name": "user_organization_admin_group",
-            "role_group_view_name": "ユーザー・組織管理グループ",
-            "description": "ユーザー・組織情報を管理する役割グループです。"
-        },
-        {
-            "role_group_name": "information_manage_group",
-            "role_group_view_name": "お知らせ情報管理グループ",
-            "description": "お知らせ情報テーブルの管理を行う役割グループです。"
-        },
-        {
-            "role_group_name": "user_group",
-            "role_group_view_name": "一般グループ",
-            "description": "一般ユーザーの役割グループです。"
-        },
-        {
-            "role_group_name": "ippan",
-            "role_group_view_name": "削除できないバグ",
-            "description": "Gitでは修正済み\r\nhttps:\/\/github.com\/exceedone\/exment\/commit\/5517f86da6508c500db00c9cee6568a313453083"
-        },
-        {
-            "role_group_name": "manager",
-            "role_group_view_name": "管理職",
-            "description": null
-        }
-    ]
+    "custom_copies": []
 }
