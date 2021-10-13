@@ -5,7 +5,7 @@
     "uuid":  "f5caf6a0-ef7a-11eb-85b4-0800200c9a66",
     "author":  "cis",
     "version": "1.0.0",
-    "plugin_type": "page",
+    "plugin_type": "view",
     "templates": true,
     "route": [
         {
