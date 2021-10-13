@@ -1,0 +1,1548 @@
+{
+    "template_name": "contract",
+    "version": "v4.1.5",
+    "template_view_name": "外注管理",
+    "description": null,
+    "custom_tables": [
+        {
+            "table_name": "contract_management",
+            "table_view_name": "外注契約管理表",
+            "description": "外注契約管理票",
+            "system_flg": "0",
+            "showlist_flg": "1",
+            "order": "0",
+            "options": {
+                "icon": "fa-pencil",
+                "comment_flg": "1",
+                "revision_flg": "1",
+                "attachment_flg": "0",
+                "one_record_flg": "0",
+                "revision_count": "100",
+                "search_enabled": "1",
+                "use_label_id_flg": "0",
+                "all_user_editable_flg": "0",
+                "all_user_viewable_flg": "0",
+                "all_user_accessable_flg": "0"
+            },
+            "custom_columns": [
+                {
+                    "column_name": "name",
+                    "column_view_name": "氏名",
+                    "column_type": "text",
+                    "description": null,
+                    "system_flg": "0",
+                    "order": "0",
+                    "options": {
+                        "unique": "0",
+                        "required": "1",
+                        "init_only": "0",
+                        "index_enabled": "1",
+                        "string_length": "256",
+                        "suggest_input": "0",
+                        "freeword_search": "0",
+                        "available_characters": [],
+                        "select_import_table_name": null,
+                        "select_import_column_name": null,
+                        "select_export_table_name": null,
+                        "select_export_column_name": null
+                    }
+                },
+                {
+                    "column_name": "contract_classification",
+                    "column_view_name": "契約分類",
+                    "column_type": "select_valtext",
+                    "description": null,
+                    "system_flg": "0",
+                    "order": "0",
+                    "options": {
+                        "unique": "0",
+                        "required": "1",
+                        "init_only": "0",
+                        "index_enabled": "1",
+                        "freeword_search": "0",
+                        "multiple_enabled": "0",
+                        "check_radio_enabled": "0",
+                        "select_item_valtext": "1,個人\r\n2,派遣契約\r\n3,準委任契約",
+                        "select_import_table_name": null,
+                        "select_import_column_name": null,
+                        "select_export_table_name": null,
+                        "select_export_column_name": null
+                    }
+                },
+                {
+                    "column_name": "contract_period",
+                    "column_view_name": "契約期間",
+                    "column_type": "select_valtext",
+                    "description": null,
+                    "system_flg": "0",
+                    "order": "0",
+                    "options": {
+                        "unique": "0",
+                        "required": "1",
+                        "init_only": "0",
+                        "index_enabled": "1",
+                        "freeword_search": "0",
+                        "multiple_enabled": "0",
+                        "check_radio_enabled": "0",
+                        "select_item_valtext": "1,単月\r\n2,二ヶ月\r\n3,三ヶ月",
+                        "select_import_table_name": null,
+                        "select_import_column_name": null,
+                        "select_export_table_name": null,
+                        "select_export_column_name": null
+                    }
+                },
+                {
+                    "column_name": "company",
+                    "column_view_name": "所属会社",
+                    "column_type": "text",
+                    "description": null,
+                    "system_flg": "0",
+                    "order": "0",
+                    "options": {
+                        "unique": "0",
+                        "required": "1",
+                        "init_only": "0",
+                        "index_enabled": "1",
+                        "string_length": "256",
+                        "suggest_input": "0",
+                        "freeword_search": "0",
+                        "available_characters": [],
+                        "select_import_table_name": null,
+                        "select_import_column_name": null,
+                        "select_export_table_name": null,
+                        "select_export_column_name": null
+                    }
+                },
+                {
+                    "column_name": "year",
+                    "column_view_name": "年度",
+                    "column_type": "integer",
+                    "description": null,
+                    "system_flg": "0",
+                    "order": "0",
+                    "options": {
+                        "unique": "0",
+                        "required": "1",
+                        "init_only": "0",
+                        "index_enabled": "1",
+                        "number_format": "0",
+                        "updown_button": "0",
+                        "freeword_search": "0",
+                        "select_import_table_name": null,
+                        "select_import_column_name": null,
+                        "select_export_table_name": null,
+                        "select_export_column_name": null
+                    }
+                },
+                {
+                    "column_name": "cost",
+                    "column_view_name": "原価",
+                    "column_type": "integer",
+                    "description": null,
+                    "system_flg": "0",
+                    "order": "0",
+                    "options": {
+                        "unique": "0",
+                        "required": "1",
+                        "init_only": "0",
+                        "index_enabled": "1",
+                        "number_format": "0",
+                        "updown_button": "0",
+                        "freeword_search": "0",
+                        "select_import_table_name": null,
+                        "select_import_column_name": null,
+                        "select_export_table_name": null,
+                        "select_export_column_name": null
+                    }
+                },
+                {
+                    "column_name": "attendance_note",
+                    "column_view_name": "勤怠備考",
+                    "column_type": "text",
+                    "description": null,
+                    "system_flg": "0",
+                    "order": "0",
+                    "options": {
+                        "unique": "0",
+                        "required": "0",
+                        "init_only": "0",
+                        "index_enabled": "1",
+                        "string_length": "256",
+                        "suggest_input": "0",
+                        "freeword_search": "0",
+                        "available_characters": [],
+                        "select_import_table_name": null,
+                        "select_import_column_name": null,
+                        "select_export_table_name": null,
+                        "select_export_column_name": null
+                    }
+                },
+                {
+                    "column_name": "start_month",
+                    "column_view_name": "初回契約月",
+                    "column_type": "integer",
+                    "description": null,
+                    "system_flg": "0",
+                    "order": "0",
+                    "options": {
+                        "unique": "0",
+                        "required": "1",
+                        "init_only": "0",
+                        "number_max": "12",
+                        "number_min": "1",
+                        "index_enabled": "1",
+                        "number_format": "0",
+                        "updown_button": "0",
+                        "freeword_search": "1",
+                        "select_import_table_name": null,
+                        "select_import_column_name": null,
+                        "select_export_table_name": null,
+                        "select_export_column_name": null
+                    }
+                },
+                {
+                    "column_name": "group",
+                    "column_view_name": "管理Gr",
+                    "column_type": "text",
+                    "description": null,
+                    "system_flg": "0",
+                    "order": "0",
+                    "options": {
+                        "unique": "0",
+                        "required": "1",
+                        "init_only": "0",
+                        "index_enabled": "1",
+                        "string_length": "256",
+                        "suggest_input": "0",
+                        "freeword_search": "0",
+                        "available_characters": [],
+                        "select_import_table_name": null,
+                        "select_import_column_name": null,
+                        "select_export_table_name": null,
+                        "select_export_column_name": null
+                    }
+                },
+                {
+                    "column_name": "contract_id",
+                    "column_view_name": "契約ID",
+                    "column_type": "auto_number",
+                    "description": null,
+                    "system_flg": "0",
+                    "order": "1",
+                    "options": {
+                        "unique": "1",
+                        "required": "1",
+                        "init_only": "0",
+                        "index_enabled": "1",
+                        "freeword_search": "0",
+                        "auto_number_type": "format",
+                        "auto_number_format": "${id}",
+                        "select_import_table_name": null,
+                        "select_import_column_name": null,
+                        "select_export_table_name": null,
+                        "select_export_column_name": null
+                    }
+                }
+            ],
+            "custom_column_multisettings": []
+        },
+        {
+            "table_name": "task",
+            "table_view_name": "タスク",
+            "description": null,
+            "system_flg": "0",
+            "showlist_flg": "1",
+            "order": "0",
+            "options": {
+                "icon": "fa-pencil",
+                "comment_flg": "0",
+                "revision_flg": "1",
+                "attachment_flg": "0",
+                "one_record_flg": "0",
+                "revision_count": "100",
+                "search_enabled": "1",
+                "use_label_id_flg": "0",
+                "all_user_editable_flg": "0",
+                "all_user_viewable_flg": "0",
+                "all_user_accessable_flg": "0"
+            },
+            "custom_columns": [
+                {
+                    "column_name": "contract_id",
+                    "column_view_name": "契約ID",
+                    "column_type": "integer",
+                    "description": null,
+                    "system_flg": "0",
+                    "order": "0",
+                    "options": {
+                        "unique": "0",
+                        "required": "1",
+                        "init_only": "0",
+                        "index_enabled": "1",
+                        "number_format": "0",
+                        "updown_button": "0",
+                        "freeword_search": "0",
+                        "select_import_table_name": null,
+                        "select_import_column_name": null,
+                        "select_export_table_name": null,
+                        "select_export_column_name": null
+                    }
+                },
+                {
+                    "column_name": "month",
+                    "column_view_name": "月",
+                    "column_type": "integer",
+                    "description": null,
+                    "system_flg": "0",
+                    "order": "0",
+                    "options": {
+                        "unique": "0",
+                        "required": "1",
+                        "init_only": "0",
+                        "number_max": "12",
+                        "number_min": "1",
+                        "index_enabled": "1",
+                        "number_format": "0",
+                        "updown_button": "0",
+                        "freeword_search": "0",
+                        "select_import_table_name": null,
+                        "select_import_column_name": null,
+                        "select_export_table_name": null,
+                        "select_export_column_name": null
+                    }
+                },
+                {
+                    "column_name": "deadline",
+                    "column_view_name": "タスク期日",
+                    "column_type": "date",
+                    "description": null,
+                    "system_flg": "0",
+                    "order": "0",
+                    "options": {
+                        "unique": "0",
+                        "required": "1",
+                        "init_only": "0",
+                        "index_enabled": "1",
+                        "freeword_search": "0",
+                        "datetime_now_saving": "0",
+                        "datetime_now_creating": "0",
+                        "select_import_table_name": null,
+                        "select_import_column_name": null,
+                        "select_export_table_name": null,
+                        "select_export_column_name": null
+                    }
+                },
+                {
+                    "column_name": "remind_date",
+                    "column_view_name": "タスク通知日",
+                    "column_type": "date",
+                    "description": null,
+                    "system_flg": "0",
+                    "order": "0",
+                    "options": {
+                        "unique": "0",
+                        "required": "1",
+                        "init_only": "0",
+                        "index_enabled": "1",
+                        "freeword_search": "0",
+                        "datetime_now_saving": "0",
+                        "datetime_now_creating": "0",
+                        "select_import_table_name": null,
+                        "select_import_column_name": null,
+                        "select_export_table_name": null,
+                        "select_export_column_name": null
+                    }
+                },
+                {
+                    "column_name": "task_name",
+                    "column_view_name": "タスク名",
+                    "column_type": "text",
+                    "description": null,
+                    "system_flg": "0",
+                    "order": "0",
+                    "options": {
+                        "unique": "0",
+                        "required": "1",
+                        "init_only": "0",
+                        "index_enabled": "1",
+                        "string_length": "256",
+                        "suggest_input": "0",
+                        "freeword_search": "0",
+                        "available_characters": [],
+                        "select_import_table_name": null,
+                        "select_import_column_name": null,
+                        "select_export_table_name": null,
+                        "select_export_column_name": null
+                    }
+                },
+                {
+                    "column_name": "complete_date",
+                    "column_view_name": "タスク完了日",
+                    "column_type": "date",
+                    "description": null,
+                    "system_flg": "0",
+                    "order": "0",
+                    "options": {
+                        "unique": "0",
+                        "required": "0",
+                        "init_only": "0",
+                        "index_enabled": "1",
+                        "freeword_search": "1",
+                        "datetime_now_saving": "0",
+                        "datetime_now_creating": "0",
+                        "select_import_table_name": null,
+                        "select_import_column_name": null,
+                        "select_export_table_name": null,
+                        "select_export_column_name": null
+                    }
+                },
+                {
+                    "column_name": "status",
+                    "column_view_name": "タスク状態",
+                    "column_type": "text",
+                    "description": null,
+                    "system_flg": "0",
+                    "order": "0",
+                    "options": {
+                        "unique": "0",
+                        "required": "1",
+                        "init_only": "0",
+                        "index_enabled": "1",
+                        "string_length": "256",
+                        "suggest_input": "0",
+                        "freeword_search": "1",
+                        "available_characters": [],
+                        "select_import_table_name": null,
+                        "select_import_column_name": null,
+                        "select_export_table_name": null,
+                        "select_export_column_name": null
+                    }
+                },
+                {
+                    "column_name": "order",
+                    "column_view_name": "タスク順番",
+                    "column_type": "integer",
+                    "description": null,
+                    "system_flg": "0",
+                    "order": "0",
+                    "options": {
+                        "unique": "0",
+                        "required": "1",
+                        "init_only": "0",
+                        "index_enabled": "1",
+                        "number_format": "0",
+                        "updown_button": "0",
+                        "freeword_search": "1",
+                        "select_import_table_name": null,
+                        "select_import_column_name": null,
+                        "select_export_table_name": null,
+                        "select_export_column_name": null
+                    }
+                },
+                {
+                    "column_name": "year",
+                    "column_view_name": "年度",
+                    "column_type": "integer",
+                    "description": null,
+                    "system_flg": "0",
+                    "order": "0",
+                    "options": {
+                        "unique": "0",
+                        "required": "1",
+                        "init_only": "0",
+                        "index_enabled": "1",
+                        "number_format": "0",
+                        "updown_button": "0",
+                        "freeword_search": "1",
+                        "select_import_table_name": null,
+                        "select_import_column_name": null,
+                        "select_export_table_name": null,
+                        "select_export_column_name": null
+                    }
+                }
+            ],
+            "custom_column_multisettings": []
+        },
+        {
+            "table_name": "task_mst",
+            "table_view_name": "タスクマスタ",
+            "description": null,
+            "system_flg": "0",
+            "showlist_flg": "1",
+            "order": "0",
+            "options": {
+                "icon": "fa-pencil",
+                "comment_flg": "1",
+                "revision_flg": "1",
+                "attachment_flg": "1",
+                "one_record_flg": "0",
+                "revision_count": "100",
+                "search_enabled": "1",
+                "use_label_id_flg": "0",
+                "share_setting_sync": "0",
+                "all_user_editable_flg": "0",
+                "all_user_viewable_flg": "0",
+                "all_user_accessable_flg": "0",
+                "form_action_disable_flg": []
+            },
+            "custom_columns": [
+                {
+                    "column_name": "task_id",
+                    "column_view_name": "タスクID",
+                    "column_type": "auto_number",
+                    "description": null,
+                    "system_flg": "0",
+                    "order": "0",
+                    "options": {
+                        "unique": "1",
+                        "required": "1",
+                        "init_only": "0",
+                        "index_enabled": "0",
+                        "freeword_search": "0",
+                        "auto_number_type": "format",
+                        "auto_number_format": "${id}",
+                        "select_import_table_name": null,
+                        "select_import_column_name": null,
+                        "select_export_table_name": null,
+                        "select_export_column_name": null
+                    }
+                },
+                {
+                    "column_name": "task_name",
+                    "column_view_name": "タスク名",
+                    "column_type": "text",
+                    "description": null,
+                    "system_flg": "0",
+                    "order": "0",
+                    "options": {
+                        "unique": "0",
+                        "required": "1",
+                        "init_only": "0",
+                        "index_enabled": "1",
+                        "string_length": "256",
+                        "suggest_input": "0",
+                        "freeword_search": "0",
+                        "available_characters": [],
+                        "select_import_table_name": null,
+                        "select_import_column_name": null,
+                        "select_export_table_name": null,
+                        "select_export_column_name": null
+                    }
+                },
+                {
+                    "column_name": "remind_timing",
+                    "column_view_name": "通知タイミング",
+                    "column_type": "integer",
+                    "description": null,
+                    "system_flg": "0",
+                    "order": "0",
+                    "options": {
+                        "unique": "0",
+                        "required": "1",
+                        "init_only": "0",
+                        "index_enabled": "1",
+                        "number_format": "0",
+                        "updown_button": "0",
+                        "freeword_search": "0",
+                        "select_import_table_name": null,
+                        "select_import_column_name": null,
+                        "select_export_table_name": null,
+                        "select_export_column_name": null
+                    }
+                },
+                {
+                    "column_name": "order",
+                    "column_view_name": "タスク順番",
+                    "column_type": "integer",
+                    "description": null,
+                    "system_flg": "0",
+                    "order": "0",
+                    "options": {
+                        "unique": "0",
+                        "required": "1",
+                        "init_only": "0",
+                        "index_enabled": "1",
+                        "number_format": "0",
+                        "updown_button": "0",
+                        "freeword_search": "1",
+                        "select_import_table_name": null,
+                        "select_import_column_name": null,
+                        "select_export_table_name": null,
+                        "select_export_column_name": null
+                    }
+                },
+                {
+                    "column_name": "contract_type",
+                    "column_view_name": "契約分類",
+                    "column_type": "select_valtext",
+                    "description": null,
+                    "system_flg": "0",
+                    "order": "0",
+                    "options": {
+                        "unique": "0",
+                        "required": "1",
+                        "init_only": "0",
+                        "index_enabled": "1",
+                        "freeword_search": "1",
+                        "multiple_enabled": "0",
+                        "check_radio_enabled": "0",
+                        "select_item_valtext": "1,個人\r\n2,派遣\r\n3,準委任",
+                        "select_import_table_name": null,
+                        "select_import_column_name": null,
+                        "select_export_table_name": null,
+                        "select_export_column_name": null
+                    }
+                }
+            ],
+            "custom_column_multisettings": [
+                {
+                    "suuid": "63d5d62f4d0543b563ac",
+                    "multisetting_type": "1",
+                    "options": {
+                        "unique1_table_name": "task_mst",
+                        "unique1_column_name": "task_name",
+                        "unique2_table_name": "task_mst",
+                        "unique2_column_name": "order",
+                        "unique3_table_name": null,
+                        "unique3_column_name": null,
+                        "compare_column1_table_name": null,
+                        "compare_column1_column_name": null,
+                        "compare_column2_table_name": null,
+                        "compare_column2_column_name": null,
+                        "share_table_name": null,
+                        "share_column_name": null,
+                        "table_label_table_name": null,
+                        "table_label_column_name": null
+                    },
+                    "priority": "0",
+                    "share_trigger_type": null,
+                    "share_permission": null
+                }
+            ]
+        }
+    ],
+    "custom_relations": [],
+    "custom_forms": [
+        {
+            "suuid": "dd56b611090cc38a264f",
+            "form_view_name": "フォーム",
+            "default_flg": "1",
+            "options": null,
+            "custom_form_blocks": [
+                {
+                    "form_block_view_name": null,
+                    "form_block_type": "0",
+                    "available": "1",
+                    "options": null,
+                    "custom_form_columns": [
+                        {
+                            "suuid": "b3352450499eb52f4ff4",
+                            "form_column_type": "0",
+                            "row_no": "1",
+                            "column_no": "1",
+                            "width": "2",
+                            "options": {
+                                "changedata_column_table_name": null,
+                                "changedata_column_name": null,
+                                "changedata_target_table_name": null,
+                                "changedata_target_column_name": null,
+                                "relation_filter_target_table_name": null,
+                                "relation_filter_target_column_name": null
+                            },
+                            "order": "51",
+                            "form_column_target_name": "name"
+                        },
+                        {
+                            "suuid": "cc8e954701163df9bb49",
+                            "form_column_type": "0",
+                            "row_no": "1",
+                            "column_no": "1",
+                            "width": "2",
+                            "options": {
+                                "changedata_column_table_name": null,
+                                "changedata_column_name": null,
+                                "changedata_target_table_name": null,
+                                "changedata_target_column_name": null,
+                                "relation_filter_target_table_name": null,
+                                "relation_filter_target_column_name": null
+                            },
+                            "order": "52",
+                            "form_column_target_name": "contract_classification"
+                        },
+                        {
+                            "suuid": "07ae47809bcec154cd0d",
+                            "form_column_type": "0",
+                            "row_no": "1",
+                            "column_no": "1",
+                            "width": "2",
+                            "options": {
+                                "changedata_column_table_name": null,
+                                "changedata_column_name": null,
+                                "changedata_target_table_name": null,
+                                "changedata_target_column_name": null,
+                                "relation_filter_target_table_name": null,
+                                "relation_filter_target_column_name": null
+                            },
+                            "order": "53",
+                            "form_column_target_name": "contract_period"
+                        },
+                        {
+                            "suuid": "44f6a88a31a17f72bb8a",
+                            "form_column_type": "0",
+                            "row_no": "1",
+                            "column_no": "1",
+                            "width": "2",
+                            "options": {
+                                "changedata_column_table_name": null,
+                                "changedata_column_name": null,
+                                "changedata_target_table_name": null,
+                                "changedata_target_column_name": null,
+                                "relation_filter_target_table_name": null,
+                                "relation_filter_target_column_name": null
+                            },
+                            "order": "54",
+                            "form_column_target_name": "company"
+                        },
+                        {
+                            "suuid": "ebad100095df0f6e9265",
+                            "form_column_type": "0",
+                            "row_no": "1",
+                            "column_no": "1",
+                            "width": "2",
+                            "options": {
+                                "changedata_column_table_name": null,
+                                "changedata_column_name": null,
+                                "changedata_target_table_name": null,
+                                "changedata_target_column_name": null,
+                                "relation_filter_target_table_name": null,
+                                "relation_filter_target_column_name": null
+                            },
+                            "order": "55",
+                            "form_column_target_name": "year"
+                        },
+                        {
+                            "suuid": "b6b2008dd84ffeff1aa4",
+                            "form_column_type": "0",
+                            "row_no": "1",
+                            "column_no": "1",
+                            "width": "2",
+                            "options": {
+                                "changedata_column_table_name": null,
+                                "changedata_column_name": null,
+                                "changedata_target_table_name": null,
+                                "changedata_target_column_name": null,
+                                "relation_filter_target_table_name": null,
+                                "relation_filter_target_column_name": null
+                            },
+                            "order": "56",
+                            "form_column_target_name": "cost"
+                        },
+                        {
+                            "suuid": "f9df79e37de386a4f832",
+                            "form_column_type": "0",
+                            "row_no": "1",
+                            "column_no": "1",
+                            "width": "2",
+                            "options": {
+                                "changedata_column_table_name": null,
+                                "changedata_column_name": null,
+                                "changedata_target_table_name": null,
+                                "changedata_target_column_name": null,
+                                "relation_filter_target_table_name": null,
+                                "relation_filter_target_column_name": null
+                            },
+                            "order": "58",
+                            "form_column_target_name": "attendance_note"
+                        },
+                        {
+                            "suuid": "d5b8f319ce14fb31d951",
+                            "form_column_type": "0",
+                            "row_no": "1",
+                            "column_no": "1",
+                            "width": "2",
+                            "options": {
+                                "changedata_column_table_name": null,
+                                "changedata_column_name": null,
+                                "changedata_target_table_name": null,
+                                "changedata_target_column_name": null,
+                                "relation_filter_target_table_name": null,
+                                "relation_filter_target_column_name": null
+                            },
+                            "order": "59",
+                            "form_column_target_name": "contract_id"
+                        },
+                        {
+                            "suuid": "d286c1448dec275ffa54",
+                            "form_column_type": "0",
+                            "row_no": "1",
+                            "column_no": "1",
+                            "width": "2",
+                            "options": {
+                                "changedata_column_table_name": null,
+                                "changedata_column_name": null,
+                                "changedata_target_table_name": null,
+                                "changedata_target_column_name": null,
+                                "relation_filter_target_table_name": null,
+                                "relation_filter_target_column_name": null
+                            },
+                            "order": "60",
+                            "form_column_target_name": "start_month"
+                        },
+                        {
+                            "suuid": "ae012cdfba8760f41387",
+                            "form_column_type": "0",
+                            "row_no": "1",
+                            "column_no": "1",
+                            "width": "2",
+                            "options": {
+                                "changedata_column_table_name": null,
+                                "changedata_column_name": null,
+                                "changedata_target_table_name": null,
+                                "changedata_target_column_name": null,
+                                "relation_filter_target_table_name": null,
+                                "relation_filter_target_column_name": null
+                            },
+                            "order": "61",
+                            "form_column_target_name": "group"
+                        }
+                    ],
+                    "form_block_target_table_name": "contract_management"
+                }
+            ],
+            "table_name": "contract_management"
+        },
+        {
+            "suuid": "a2e8979830983504e503",
+            "form_view_name": "フォーム",
+            "default_flg": "1",
+            "options": null,
+            "custom_form_blocks": [
+                {
+                    "form_block_view_name": null,
+                    "form_block_type": "0",
+                    "available": "1",
+                    "options": null,
+                    "custom_form_columns": [
+                        {
+                            "suuid": "b96e252b0da46e9cc3c9",
+                            "form_column_type": "0",
+                            "row_no": "1",
+                            "column_no": "1",
+                            "width": "2",
+                            "options": {
+                                "changedata_column_table_name": null,
+                                "changedata_column_name": null,
+                                "changedata_target_table_name": null,
+                                "changedata_target_column_name": null,
+                                "relation_filter_target_table_name": null,
+                                "relation_filter_target_column_name": null
+                            },
+                            "order": "59",
+                            "form_column_target_name": "contract_id"
+                        },
+                        {
+                            "suuid": "da9988214ae8ed710f2e",
+                            "form_column_type": "0",
+                            "row_no": "1",
+                            "column_no": "1",
+                            "width": "2",
+                            "options": {
+                                "changedata_column_table_name": null,
+                                "changedata_column_name": null,
+                                "changedata_target_table_name": null,
+                                "changedata_target_column_name": null,
+                                "relation_filter_target_table_name": null,
+                                "relation_filter_target_column_name": null
+                            },
+                            "order": "61",
+                            "form_column_target_name": "month"
+                        },
+                        {
+                            "suuid": "fd500f6061cffb68438d",
+                            "form_column_type": "0",
+                            "row_no": "1",
+                            "column_no": "1",
+                            "width": "2",
+                            "options": {
+                                "changedata_column_table_name": null,
+                                "changedata_column_name": null,
+                                "changedata_target_table_name": null,
+                                "changedata_target_column_name": null,
+                                "relation_filter_target_table_name": null,
+                                "relation_filter_target_column_name": null
+                            },
+                            "order": "64",
+                            "form_column_target_name": "deadline"
+                        },
+                        {
+                            "suuid": "a0912ef247f542fd368a",
+                            "form_column_type": "0",
+                            "row_no": "1",
+                            "column_no": "1",
+                            "width": "2",
+                            "options": {
+                                "changedata_column_table_name": null,
+                                "changedata_column_name": null,
+                                "changedata_target_table_name": null,
+                                "changedata_target_column_name": null,
+                                "relation_filter_target_table_name": null,
+                                "relation_filter_target_column_name": null
+                            },
+                            "order": "65",
+                            "form_column_target_name": "remind_date"
+                        },
+                        {
+                            "suuid": "0496b906b9ee28f7d07c",
+                            "form_column_type": "0",
+                            "row_no": "1",
+                            "column_no": "1",
+                            "width": "2",
+                            "options": {
+                                "changedata_column_table_name": null,
+                                "changedata_column_name": null,
+                                "changedata_target_table_name": null,
+                                "changedata_target_column_name": null,
+                                "relation_filter_target_table_name": null,
+                                "relation_filter_target_column_name": null
+                            },
+                            "order": "66",
+                            "form_column_target_name": "task_name"
+                        },
+                        {
+                            "suuid": "fce6e83d08eb07765aa1",
+                            "form_column_type": "0",
+                            "row_no": "1",
+                            "column_no": "1",
+                            "width": "2",
+                            "options": {
+                                "changedata_column_table_name": null,
+                                "changedata_column_name": null,
+                                "changedata_target_table_name": null,
+                                "changedata_target_column_name": null,
+                                "relation_filter_target_table_name": null,
+                                "relation_filter_target_column_name": null
+                            },
+                            "order": "67",
+                            "form_column_target_name": "complete_date"
+                        },
+                        {
+                            "suuid": "e5a352a7da5cbd3d78b7",
+                            "form_column_type": "0",
+                            "row_no": "1",
+                            "column_no": "1",
+                            "width": "2",
+                            "options": {
+                                "changedata_column_table_name": null,
+                                "changedata_column_name": null,
+                                "changedata_target_table_name": null,
+                                "changedata_target_column_name": null,
+                                "relation_filter_target_table_name": null,
+                                "relation_filter_target_column_name": null
+                            },
+                            "order": "68",
+                            "form_column_target_name": "status"
+                        },
+                        {
+                            "suuid": "1e670cfacb8fdbbd59aa",
+                            "form_column_type": "0",
+                            "row_no": "1",
+                            "column_no": "1",
+                            "width": "2",
+                            "options": {
+                                "changedata_column_table_name": null,
+                                "changedata_column_name": null,
+                                "changedata_target_table_name": null,
+                                "changedata_target_column_name": null,
+                                "relation_filter_target_table_name": null,
+                                "relation_filter_target_column_name": null
+                            },
+                            "order": "69",
+                            "form_column_target_name": "order"
+                        },
+                        {
+                            "suuid": "cfd1cf8fcfd0b03bfbb7",
+                            "form_column_type": "0",
+                            "row_no": "1",
+                            "column_no": "1",
+                            "width": "2",
+                            "options": {
+                                "changedata_column_table_name": null,
+                                "changedata_column_name": null,
+                                "changedata_target_table_name": null,
+                                "changedata_target_column_name": null,
+                                "relation_filter_target_table_name": null,
+                                "relation_filter_target_column_name": null
+                            },
+                            "order": "70",
+                            "form_column_target_name": "year"
+                        }
+                    ],
+                    "form_block_target_table_name": "task"
+                }
+            ],
+            "table_name": "task"
+        },
+        {
+            "suuid": "c9b6bb37fba504f5780c",
+            "form_view_name": "フォーム",
+            "default_flg": "1",
+            "options": null,
+            "custom_form_blocks": [
+                {
+                    "form_block_view_name": null,
+                    "form_block_type": "0",
+                    "available": "1",
+                    "options": null,
+                    "custom_form_columns": [
+                        {
+                            "suuid": "642d4bcfa5b6dac0f41c",
+                            "form_column_type": "0",
+                            "row_no": "1",
+                            "column_no": "1",
+                            "width": "2",
+                            "options": {
+                                "changedata_column_table_name": null,
+                                "changedata_column_name": null,
+                                "changedata_target_table_name": null,
+                                "changedata_target_column_name": null,
+                                "relation_filter_target_table_name": null,
+                                "relation_filter_target_column_name": null
+                            },
+                            "order": "63",
+                            "form_column_target_name": "task_id"
+                        },
+                        {
+                            "suuid": "27902be4d664f247d431",
+                            "form_column_type": "0",
+                            "row_no": "1",
+                            "column_no": "1",
+                            "width": "2",
+                            "options": {
+                                "changedata_column_table_name": null,
+                                "changedata_column_name": null,
+                                "changedata_target_table_name": null,
+                                "changedata_target_column_name": null,
+                                "relation_filter_target_table_name": null,
+                                "relation_filter_target_column_name": null
+                            },
+                            "order": "65",
+                            "form_column_target_name": "task_name"
+                        },
+                        {
+                            "suuid": "1add2f569c7184666238",
+                            "form_column_type": "0",
+                            "row_no": "1",
+                            "column_no": "1",
+                            "width": "2",
+                            "options": {
+                                "changedata_column_table_name": null,
+                                "changedata_column_name": null,
+                                "changedata_target_table_name": null,
+                                "changedata_target_column_name": null,
+                                "relation_filter_target_table_name": null,
+                                "relation_filter_target_column_name": null
+                            },
+                            "order": "66",
+                            "form_column_target_name": "remind_timing"
+                        },
+                        {
+                            "suuid": "154a0a43fc1dd81b1d7b",
+                            "form_column_type": "0",
+                            "row_no": "1",
+                            "column_no": "1",
+                            "width": "2",
+                            "options": {
+                                "changedata_column_table_name": null,
+                                "changedata_column_name": null,
+                                "changedata_target_table_name": null,
+                                "changedata_target_column_name": null,
+                                "relation_filter_target_table_name": null,
+                                "relation_filter_target_column_name": null
+                            },
+                            "order": "67",
+                            "form_column_target_name": "order"
+                        },
+                        {
+                            "suuid": "e91b8213673a379162bd",
+                            "form_column_type": "0",
+                            "row_no": "1",
+                            "column_no": "1",
+                            "width": "2",
+                            "options": {
+                                "changedata_column_table_name": null,
+                                "changedata_column_name": null,
+                                "changedata_target_table_name": null,
+                                "changedata_target_column_name": null,
+                                "relation_filter_target_table_name": null,
+                                "relation_filter_target_column_name": null
+                            },
+                            "order": "68",
+                            "form_column_target_name": "contract_type"
+                        }
+                    ],
+                    "form_block_target_table_name": "task_mst"
+                }
+            ],
+            "table_name": "task_mst"
+        }
+    ],
+    "custom_views": [
+        {
+            "suuid": "cd2ae60fbcd4fbd0a20c",
+            "view_type": "0",
+            "view_kind_type": "9",
+            "view_view_name": "全件ビュー",
+            "default_flg": "1",
+            "options": {
+                "pager_count": "0",
+                "use_view_infobox": "0"
+            },
+            "custom_options": null,
+            "custom_view_columns": [
+                {
+                    "suuid": "c6acea5a77bce59dc432",
+                    "view_column_type": "0",
+                    "order": "10",
+                    "options": [],
+                    "view_column_end_date": null,
+                    "view_column_color": null,
+                    "view_column_font_color": null,
+                    "sort_order": null,
+                    "sort_type": null,
+                    "view_column_table_name": "contract_management",
+                    "view_column_target_name": "contract_id",
+                    "view_pivot_table_name": null,
+                    "view_pivot_column_name": null
+                },
+                {
+                    "suuid": "b4d677c8c950078498b0",
+                    "view_column_type": "0",
+                    "order": "20",
+                    "options": [],
+                    "view_column_end_date": null,
+                    "view_column_color": null,
+                    "view_column_font_color": null,
+                    "sort_order": null,
+                    "sort_type": null,
+                    "view_column_table_name": "contract_management",
+                    "view_column_target_name": "name",
+                    "view_pivot_table_name": null,
+                    "view_pivot_column_name": null
+                },
+                {
+                    "suuid": "f657a9b28c28bbad260c",
+                    "view_column_type": "0",
+                    "order": "30",
+                    "options": [],
+                    "view_column_end_date": null,
+                    "view_column_color": null,
+                    "view_column_font_color": null,
+                    "sort_order": null,
+                    "sort_type": null,
+                    "view_column_table_name": "contract_management",
+                    "view_column_target_name": "contract_classification",
+                    "view_pivot_table_name": null,
+                    "view_pivot_column_name": null
+                },
+                {
+                    "suuid": "7097571e1c978e28ba5e",
+                    "view_column_type": "0",
+                    "order": "40",
+                    "options": [],
+                    "view_column_end_date": null,
+                    "view_column_color": null,
+                    "view_column_font_color": null,
+                    "sort_order": null,
+                    "sort_type": null,
+                    "view_column_table_name": "contract_management",
+                    "view_column_target_name": "contract_period",
+                    "view_pivot_table_name": null,
+                    "view_pivot_column_name": null
+                },
+                {
+                    "suuid": "ae114114d23d48bdc252",
+                    "view_column_type": "0",
+                    "order": "50",
+                    "options": [],
+                    "view_column_end_date": null,
+                    "view_column_color": null,
+                    "view_column_font_color": null,
+                    "sort_order": null,
+                    "sort_type": null,
+                    "view_column_table_name": "contract_management",
+                    "view_column_target_name": "company",
+                    "view_pivot_table_name": null,
+                    "view_pivot_column_name": null
+                },
+                {
+                    "suuid": "9c0630dbbdfd5606d13b",
+                    "view_column_type": "0",
+                    "order": "60",
+                    "options": [],
+                    "view_column_end_date": null,
+                    "view_column_color": null,
+                    "view_column_font_color": null,
+                    "sort_order": null,
+                    "sort_type": null,
+                    "view_column_table_name": "contract_management",
+                    "view_column_target_name": "year",
+                    "view_pivot_table_name": null,
+                    "view_pivot_column_name": null
+                },
+                {
+                    "suuid": "3e71423db1d288b13d7b",
+                    "view_column_type": "0",
+                    "order": "70",
+                    "options": [],
+                    "view_column_end_date": null,
+                    "view_column_color": null,
+                    "view_column_font_color": null,
+                    "sort_order": null,
+                    "sort_type": null,
+                    "view_column_table_name": "contract_management",
+                    "view_column_target_name": "cost",
+                    "view_pivot_table_name": null,
+                    "view_pivot_column_name": null
+                },
+                {
+                    "suuid": "2de1eac37334cebb0c49",
+                    "view_column_type": "0",
+                    "order": "80",
+                    "options": [],
+                    "view_column_end_date": null,
+                    "view_column_color": null,
+                    "view_column_font_color": null,
+                    "sort_order": null,
+                    "sort_type": null,
+                    "view_column_table_name": "contract_management",
+                    "view_column_target_name": "start_month",
+                    "view_pivot_table_name": null,
+                    "view_pivot_column_name": null
+                },
+                {
+                    "suuid": "1addbc0bf356bab1cc61",
+                    "view_column_type": "1",
+                    "order": "90",
+                    "options": [],
+                    "view_column_end_date": null,
+                    "view_column_color": null,
+                    "view_column_font_color": null,
+                    "sort_order": null,
+                    "sort_type": null,
+                    "view_column_table_name": "contract_management",
+                    "view_column_target_name": "id",
+                    "view_pivot_table_name": null,
+                    "view_pivot_column_name": null
+                },
+                {
+                    "suuid": "fb93a9501b3cd066a9cd",
+                    "view_column_type": "0",
+                    "order": "91",
+                    "options": [],
+                    "view_column_end_date": null,
+                    "view_column_color": null,
+                    "view_column_font_color": null,
+                    "sort_order": null,
+                    "sort_type": null,
+                    "view_column_table_name": "contract_management",
+                    "view_column_target_name": "group",
+                    "view_pivot_table_name": null,
+                    "view_pivot_column_name": null
+                }
+            ],
+            "custom_view_filters": [],
+            "custom_view_sorts": [],
+            "custom_view_summaries": [],
+            "table_name": "contract_management"
+        },
+        {
+            "suuid": "143ee68e37f04ea8e962",
+            "view_type": "0",
+            "view_kind_type": "9",
+            "view_view_name": "全件ビュー",
+            "default_flg": "1",
+            "options": {
+                "pager_count": "0",
+                "use_view_infobox": "0"
+            },
+            "custom_options": null,
+            "custom_view_columns": [
+                {
+                    "suuid": "4a902dad09da546c62bd",
+                    "view_column_type": "1",
+                    "order": "10",
+                    "options": [],
+                    "view_column_end_date": null,
+                    "view_column_color": null,
+                    "view_column_font_color": null,
+                    "sort_order": null,
+                    "sort_type": null,
+                    "view_column_table_name": "task",
+                    "view_column_target_name": "id",
+                    "view_pivot_table_name": null,
+                    "view_pivot_column_name": null
+                },
+                {
+                    "suuid": "7e855bb1b693828fea0e",
+                    "view_column_type": "0",
+                    "order": "20",
+                    "options": [],
+                    "view_column_end_date": null,
+                    "view_column_color": null,
+                    "view_column_font_color": null,
+                    "sort_order": null,
+                    "sort_type": null,
+                    "view_column_table_name": "task",
+                    "view_column_target_name": "contract_id",
+                    "view_pivot_table_name": null,
+                    "view_pivot_column_name": null
+                },
+                {
+                    "suuid": "eb5044406c410f240561",
+                    "view_column_type": "0",
+                    "order": "40",
+                    "options": [],
+                    "view_column_end_date": null,
+                    "view_column_color": null,
+                    "view_column_font_color": null,
+                    "sort_order": null,
+                    "sort_type": null,
+                    "view_column_table_name": "task",
+                    "view_column_target_name": "month",
+                    "view_pivot_table_name": null,
+                    "view_pivot_column_name": null
+                },
+                {
+                    "suuid": "ccc762ca1f0f1799f9bc",
+                    "view_column_type": "0",
+                    "order": "60",
+                    "options": [],
+                    "view_column_end_date": null,
+                    "view_column_color": null,
+                    "view_column_font_color": null,
+                    "sort_order": null,
+                    "sort_type": null,
+                    "view_column_table_name": "task",
+                    "view_column_target_name": "deadline",
+                    "view_pivot_table_name": null,
+                    "view_pivot_column_name": null
+                },
+                {
+                    "suuid": "02050cfc9518fd5a75ac",
+                    "view_column_type": "0",
+                    "order": "70",
+                    "options": [],
+                    "view_column_end_date": null,
+                    "view_column_color": null,
+                    "view_column_font_color": null,
+                    "sort_order": null,
+                    "sort_type": null,
+                    "view_column_table_name": "task",
+                    "view_column_target_name": "remind_date",
+                    "view_pivot_table_name": null,
+                    "view_pivot_column_name": null
+                },
+                {
+                    "suuid": "21281ff1d848af9bc357",
+                    "view_column_type": "0",
+                    "order": "71",
+                    "options": [],
+                    "view_column_end_date": null,
+                    "view_column_color": null,
+                    "view_column_font_color": null,
+                    "sort_order": null,
+                    "sort_type": null,
+                    "view_column_table_name": "task",
+                    "view_column_target_name": "task_name",
+                    "view_pivot_table_name": null,
+                    "view_pivot_column_name": null
+                },
+                {
+                    "suuid": "4b539add5259823381f7",
+                    "view_column_type": "0",
+                    "order": "72",
+                    "options": [],
+                    "view_column_end_date": null,
+                    "view_column_color": null,
+                    "view_column_font_color": null,
+                    "sort_order": null,
+                    "sort_type": null,
+                    "view_column_table_name": "task",
+                    "view_column_target_name": "complete_date",
+                    "view_pivot_table_name": null,
+                    "view_pivot_column_name": null
+                },
+                {
+                    "suuid": "9f0287b199818daafa2a",
+                    "view_column_type": "0",
+                    "order": "73",
+                    "options": [],
+                    "view_column_end_date": null,
+                    "view_column_color": null,
+                    "view_column_font_color": null,
+                    "sort_order": null,
+                    "sort_type": null,
+                    "view_column_table_name": "task",
+                    "view_column_target_name": "status",
+                    "view_pivot_table_name": null,
+                    "view_pivot_column_name": null
+                },
+                {
+                    "suuid": "d85f99e6fdb8fa273dd6",
+                    "view_column_type": "0",
+                    "order": "74",
+                    "options": [],
+                    "view_column_end_date": null,
+                    "view_column_color": null,
+                    "view_column_font_color": null,
+                    "sort_order": null,
+                    "sort_type": null,
+                    "view_column_table_name": "task",
+                    "view_column_target_name": "order",
+                    "view_pivot_table_name": null,
+                    "view_pivot_column_name": null
+                },
+                {
+                    "suuid": "bdf39cd6c7c8b5f05c10",
+                    "view_column_type": "0",
+                    "order": "75",
+                    "options": [],
+                    "view_column_end_date": null,
+                    "view_column_color": null,
+                    "view_column_font_color": null,
+                    "sort_order": null,
+                    "sort_type": null,
+                    "view_column_table_name": "task",
+                    "view_column_target_name": "year",
+                    "view_pivot_table_name": null,
+                    "view_pivot_column_name": null
+                }
+            ],
+            "custom_view_filters": [],
+            "custom_view_sorts": [],
+            "custom_view_summaries": [],
+            "table_name": "task"
+        },
+        {
+            "suuid": "59306d9a850683ffd5e7",
+            "view_type": "0",
+            "view_kind_type": "9",
+            "view_view_name": "全件ビュー",
+            "default_flg": "1",
+            "options": null,
+            "custom_options": null,
+            "custom_view_columns": [
+                {
+                    "suuid": "5cbfb5bce39f0c6921e5",
+                    "view_column_type": "1",
+                    "order": "1",
+                    "options": [],
+                    "view_column_end_date": null,
+                    "view_column_color": null,
+                    "view_column_font_color": null,
+                    "sort_order": null,
+                    "sort_type": null,
+                    "view_column_table_name": "task_mst",
+                    "view_column_target_name": "id",
+                    "view_pivot_table_name": null,
+                    "view_pivot_column_name": null
+                },
+                {
+                    "suuid": "b23ebea60ac4f5391e36",
+                    "view_column_type": "0",
+                    "order": "2",
+                    "options": [],
+                    "view_column_end_date": null,
+                    "view_column_color": null,
+                    "view_column_font_color": null,
+                    "sort_order": null,
+                    "sort_type": null,
+                    "view_column_table_name": "task_mst",
+                    "view_column_target_name": "task_id",
+                    "view_pivot_table_name": null,
+                    "view_pivot_column_name": null
+                },
+                {
+                    "suuid": "6c11a98d197388151cbe",
+                    "view_column_type": "0",
+                    "order": "4",
+                    "options": [],
+                    "view_column_end_date": null,
+                    "view_column_color": null,
+                    "view_column_font_color": null,
+                    "sort_order": null,
+                    "sort_type": null,
+                    "view_column_table_name": "task_mst",
+                    "view_column_target_name": "remind_timing",
+                    "view_pivot_table_name": null,
+                    "view_pivot_column_name": null
+                },
+                {
+                    "suuid": "7f2021a96e05ce580728",
+                    "view_column_type": "0",
+                    "order": "5",
+                    "options": [],
+                    "view_column_end_date": null,
+                    "view_column_color": null,
+                    "view_column_font_color": null,
+                    "sort_order": null,
+                    "sort_type": null,
+                    "view_column_table_name": "task_mst",
+                    "view_column_target_name": "order",
+                    "view_pivot_table_name": null,
+                    "view_pivot_column_name": null
+                },
+                {
+                    "suuid": "a1f4f209e26d765ceb2b",
+                    "view_column_type": "0",
+                    "order": "6",
+                    "options": [],
+                    "view_column_end_date": null,
+                    "view_column_color": null,
+                    "view_column_font_color": null,
+                    "sort_order": null,
+                    "sort_type": null,
+                    "view_column_table_name": "task_mst",
+                    "view_column_target_name": "contract_type",
+                    "view_pivot_table_name": null,
+                    "view_pivot_column_name": null
+                },
+                {
+                    "suuid": "9b99c37748a3a2cc2ac0",
+                    "view_column_type": "1",
+                    "order": "81",
+                    "options": [],
+                    "view_column_end_date": null,
+                    "view_column_color": null,
+                    "view_column_font_color": null,
+                    "sort_order": null,
+                    "sort_type": null,
+                    "view_column_table_name": "task_mst",
+                    "view_column_target_name": "created_at",
+                    "view_pivot_table_name": null,
+                    "view_pivot_column_name": null
+                },
+                {
+                    "suuid": "1c6913175c2809a9a105",
+                    "view_column_type": "1",
+                    "order": "82",
+                    "options": [],
+                    "view_column_end_date": null,
+                    "view_column_color": null,
+                    "view_column_font_color": null,
+                    "sort_order": null,
+                    "sort_type": null,
+                    "view_column_table_name": "task_mst",
+                    "view_column_target_name": "updated_at",
+                    "view_pivot_table_name": null,
+                    "view_pivot_column_name": null
+                }
+            ],
+            "custom_view_filters": [],
+            "custom_view_sorts": [],
+            "custom_view_summaries": [],
+            "table_name": "task_mst"
+        }
+    ],
+    "custom_copies": []
+}
