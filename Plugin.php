@@ -248,10 +248,7 @@ class Plugin extends PluginPageBase
         }
         //$holidays = getHolidays($year); 未実装
         $deadline = date('Y-m-d', strtotime('last day of ' . $year . '-' . $deadlineMonth));
-        log::debug("deadline".$deadlineMonth);
         $deadline = $this->judgeday($deadline);
-        log::debug("deadline".$deadline);
-        log::debug("year".$year);
         return $deadline;
     }
     /**
